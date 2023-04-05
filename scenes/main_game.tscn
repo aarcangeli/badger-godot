@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bycs2auqln7bc"]
+
+[ext_resource type="Texture2D" uid="uid://ckqvwt7ugkhiq" path="res://assets/bg.png" id="1_35632"]
+[ext_resource type="Script" path="res://scenes/main_game.gd" id="1_lqjy3"]
+[ext_resource type="Texture2D" uid="uid://d1r8t570o6oaw" path="res://assets/bg_detail1.png" id="4_uh7lu"]
+[ext_resource type="Texture2D" uid="uid://ck65s8ramg4ys" path="res://assets/bg_detail2.png" id="5_4vvqu"]
+[ext_resource type="AudioStream" uid="uid://bj8gqh6m4d2ni" path="res://assets/sounds/BadgerBase.mp3" id="5_8gsic"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Root" type="Node2D" parent="."]
+scale = Vector2(0.667, 0.667)
+script = ExtResource("1_lqjy3")
+
+[node name="Bg" type="Sprite2D" parent="Root"]
+position = Vector2(960, 540)
+texture = ExtResource("1_35632")
+
+[node name="SpawnLocation" type="Node2D" parent="Root"]
+
+[node name="Detail1" type="Sprite2D" parent="Root"]
+z_index = 1
+position = Vector2(960, 540)
+texture = ExtResource("4_uh7lu")
+
+[node name="Detail1Loc" type="Node2D" parent="Root"]
+position = Vector2(425.787, 427.286)
+
+[node name="Detail2" type="Sprite2D" parent="Root"]
+position = Vector2(960, 540)
+texture = ExtResource("5_4vvqu")
+
+[node name="Horizon" type="Node2D" parent="Root"]
+position = Vector2(0, 285)
+
+[node name="Bottom" type="Node2D" parent="Root"]
+position = Vector2(0, 946.027)
+
+[node name="Music" type="AudioStreamPlayer" parent="Root"]
+stream = ExtResource("5_8gsic")
+autoplay = true

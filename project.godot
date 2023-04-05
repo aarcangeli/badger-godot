@@ -11,8 +11,15 @@ config_version=5
 [application]
 
 config/name="Badger"
+run/main_scene="res://scenes/main_game.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="viewport"
 
 [rendering]
 
