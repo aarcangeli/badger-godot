@@ -8,8 +8,9 @@ extends Node2D
 
 var min_size = 0.1
 var max_size = 1.4
-var current_side = true
+var current_side = false
 var last_mushroom
+var last_snake
 
 func _ready():
 	$Detail1.z_index = $Detail1Loc.global_position.y
@@ -22,21 +23,39 @@ func _input(event):
 
 	if (event is InputEventMouseButton and event.is_pressed()):
 		_on_click(event)
+		
+func _reset():
+	for itm in _spawnLocation.get_children():
+		itm.free()
+	_resetPopups()
 
-func _on_click(event: InputEventMouseButton):
+func _resetPopups():
+	if is_instance_valid(last_snake):
+		last_snake.queue_free()
+	if is_instance_valid(last_mushroom):
+		last_mushroom.queue_free()
+		current_side = false
 	
+func _on_click(event: InputEventMouseButton):
+
 	# right click
 	if (event.button_index == 2):
-		for itm in _spawnLocation.get_children():
-			itm.free()
 		if not is_instance_valid(last_mushroom):
+			_reset()
 			last_mushroom = _mushroomPrefab.instantiate()
 			last_mushroom.z_index = 1001
 			add_child(last_mushroom)
 		return
 
-	if is_instance_valid(last_mushroom):
-		last_mushroom.queue_free()
+	# middle click
+	if (event.button_index == 3):
+		_reset()
+		last_snake = preload("res://prefabs/snake.tscn").instantiate()
+		last_snake.z_index = 1002
+		add_child(last_snake)
+		return
+
+	_resetPopups()
 
 	var badger: AnimatedSprite2D = _badgerPath.instantiate()
 	_spawnLocation.add_child(badger)

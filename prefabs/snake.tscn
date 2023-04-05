@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://c3yedyxbpbbjt"]
+
+[ext_resource type="Texture2D" uid="uid://b7axm037iqf7y" path="res://assets/snake_bg.png" id="1_156ys"]
+[ext_resource type="Script" path="res://prefabs/snake.gd" id="1_ud3f8"]
+[ext_resource type="Texture2D" uid="uid://4e2mhuu7t7sf" path="res://assets/snake.png" id="2_t02t3"]
+[ext_resource type="AudioStream" uid="uid://blebyjpe7c6kg" path="res://assets/sounds/BadgerSnake.mp3" id="4_avl7e"]
+[ext_resource type="Texture2D" uid="uid://di8mai8wvbrpp" path="res://assets/snake_shadow.png" id="4_eq7h1"]
+[ext_resource type="Texture2D" uid="uid://d2kmdusbp6dq1" path="res://assets/snake_details.png" id="6_1h8uv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws7lj"]
+atlas = ExtResource("2_t02t3")
+region = Rect2(830, 660, 830, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgwit"]
+atlas = ExtResource("2_t02t3")
+region = Rect2(0, 0, 830, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svq20"]
+atlas = ExtResource("2_t02t3")
+region = Rect2(830, 0, 830, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib58g"]
+atlas = ExtResource("2_t02t3")
+region = Rect2(0, 660, 830, 660)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ldvk3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws7lj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws7lj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgwit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svq20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ib58g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svq20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgwit")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Snake" type="Node2D"]
+script = ExtResource("1_ud3f8")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_156ys")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_avl7e")
+autoplay = true
+
+[node name="SnakeSprite" type="Node2D" parent="."]
+position = Vector2(22, 555)
+
+[node name="SnakeShadow" type="Sprite2D" parent="SnakeSprite"]
+position = Vector2(0, 63.0001)
+texture = ExtResource("4_eq7h1")
+
+[node name="sprite" type="AnimatedSprite2D" parent="SnakeSprite"]
+sprite_frames = SubResource("SpriteFrames_ldvk3")
+frame = 6
+frame_progress = 0.378885
+
+[node name="Details" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("6_1h8uv")
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
