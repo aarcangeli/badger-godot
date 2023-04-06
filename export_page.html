@@ -109,6 +109,10 @@ body {
 	visibility: visible;
 }
 		</style>
+		
+		<!-- Simulate isolation using a service worker  -->
+		<script src="coi-serviceworker.js"></script>
+
 		$GODOT_HEAD_INCLUDE
 	</head>
 	<body>
@@ -139,6 +143,11 @@ const GODOT_CONFIG = $GODOT_CONFIG;
 const engine = new Engine(GODOT_CONFIG);
 
 (function () {
+	if (!Features.isCrossOriginIsolated() || !Features.isSharedArrayBufferAvailable()) {
+		// Waiting for coi-serviceworker.js to do his magic
+		return;
+	}
+
 	const INDETERMINATE_STATUS_STEP_MS = 100;
 	const statusProgress = document.getElementById('status-progress');
 	const statusProgressInner = document.getElementById('status-progress-inner');
