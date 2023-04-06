@@ -58,11 +58,11 @@ animations = [{
 [node name="Badger" type="AnimatedSprite2D"]
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_y8o8y")
-offset = Vector2(0, -60)
+offset = Vector2(0, -20)
 script = ExtResource("2_1dsqu")
 
 [node name="Pivot" type="Node2D" parent="."]
-position = Vector2(79, 167)
+position = Vector2(79, 201)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_1edd5")

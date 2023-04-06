@@ -24,7 +24,7 @@ position = Vector2(960, 540)
 texture = ExtResource("4_uh7lu")
 
 [node name="Detail1Loc" type="Node2D" parent="Root"]
-position = Vector2(425.787, 427.286)
+position = Vector2(424.288, 422.789)
 
 [node name="Detail2" type="Sprite2D" parent="Root"]
 position = Vector2(960, 540)

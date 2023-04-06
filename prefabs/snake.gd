@@ -10,4 +10,7 @@ func _process(delta):
 	$SnakeSprite.position.x += delta * speed
 
 func _on_audio_stream_player_finished():
+	$Timeout.start()
+
+func _on_timeout_timeout():
 	queue_free()

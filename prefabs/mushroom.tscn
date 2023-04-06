@@ -12,6 +12,7 @@ script = ExtResource("1_y6ocy")
 texture = ExtResource("1_ap1om")
 
 [node name="Timeout" type="Timer" parent="."]
+wait_time = 1.2
 autostart = true
 
 [node name="Sound" type="AudioStreamPlayer" parent="."]

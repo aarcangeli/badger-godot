@@ -79,4 +79,8 @@ frame_progress = 0.378885
 position = Vector2(960, 540)
 texture = ExtResource("6_1h8uv")
 
+[node name="Timeout" type="Timer" parent="."]
+wait_time = 0.4
+
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="timeout" from="Timeout" to="." method="_on_timeout_timeout"]

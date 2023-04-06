@@ -37,6 +37,9 @@ func _resetPopups():
 		current_side = false
 	
 func _on_click(event: InputEventMouseButton):
+	# left click
+	if (event.button_index == 1):
+		spawn_badger(event)
 
 	# right click
 	if (event.button_index == 2):
@@ -45,7 +48,6 @@ func _on_click(event: InputEventMouseButton):
 			last_mushroom = _mushroomPrefab.instantiate()
 			last_mushroom.z_index = 1001
 			add_child(last_mushroom)
-		return
 
 	# middle click
 	if (event.button_index == 3):
@@ -53,8 +55,8 @@ func _on_click(event: InputEventMouseButton):
 		last_snake = preload("res://prefabs/snake.tscn").instantiate()
 		last_snake.z_index = 1002
 		add_child(last_snake)
-		return
 
+func spawn_badger(event: InputEventMouseButton):
 	_resetPopups()
 
 	var badger: AnimatedSprite2D = _badgerPath.instantiate()
@@ -66,8 +68,8 @@ func _on_click(event: InputEventMouseButton):
 	var max = _bottom.global_position.y
 	var alpha = (badger.global_position.y - min) / (max - min)
 	if alpha < 0:
-		badger.free()
-		return
+		alpha = 0
+		badger.global_position.y = min
 
 	var scale = lerp(min_size, max_size, alpha)
 	#var side = 1 if randi() % 2 == 0 else -1
